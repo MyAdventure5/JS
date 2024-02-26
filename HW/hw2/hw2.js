@@ -163,7 +163,10 @@ let userArr = [
 
 console.log('_______________task2_1_______________')
 
-    let x  = +prompt('enter number from -3 to 3');
+// - Є змінна х, якій ви надаєте довільне числове значення.
+// Якщо змінна x не дорівнює нулю, виведіть 'Вірно', інакше виведіть 'Невірно'. Перевірте  скрипт при a, що дорівнює 1, 0, -3
+
+    let x  = 1;
     if (x !== 0 ){
         document.write('<h1>Вірно</h1>')
     }
@@ -171,21 +174,117 @@ console.log('_______________task2_1_______________')
         document.write('<h1>Хиба</h1>')
     }
 
+console.log('_______________task2_2_______________')
+
 // - Дано змінну time яка рівна числу від 0 до 59. Потрібно написати код, який перевірить, до якої четверті години попадає число
 // // (в першу, другу, третю или четверту частину години).
 
-console.log('_______________task2_2_______________')
+    let time = +prompt('Enter time from 0 to 59');
+        if (time>= 0 && time <15 ){
+            alert('1 quoter');
+        }
+        else if (time>= 15 && time< 30 ){
+            alert('2 quoter');
+        }
+        else if (time >= 30 && time < 45){
+            alert('3 quoter');
+        }
+        else if (time >= 45 && time <= 59 ){
+            alert('4 quoter');
+        }
+        else {
+            alert('Щось не те клацнув');
+        }
 
 
-    if (a => 0 && a < 15 ){
-        document.write('<h1> 1 quoter</h1>');
-    }
-    else if (time => 15 && time < 30 ){
-        document.write('<h1>2 quoter</h1>');
-    }
-    else if (time => 30 && time < 45){
-        document.write('<h1>3 quoter</h1>');
-    }
-    else if (time => 45 && time <= 59 ){
-        document.write('<h1>4 quoter</h1>');
-    }
+console.log('_______________task2_3_______________')
+
+// - У змінній day дано якесь число від 1 до 31. Потрібно визначити, у яку половину(декаду) місяця потрапляє це число (у першу, другу чи третю).
+
+    let day = +prompt('Enter day from 1 to 31');
+        if (day >= 1 && day <11 ){
+            alert('1 decade');
+        }
+        else if (day >= 11 && day< 20 ){
+            alert('2 decade');
+        }
+        else if (day >= 20 && day < 31){
+            alert('3 decade');
+        }
+        else {
+            alert('Щось не те клацнув');
+        }
+
+
+console.log('_______________task2_4_______________')
+
+// - Скласти розклад на тиждень за домопоги switch. Користувач вводить порядковий номер дня тижня і на екрані
+// відображається інфа що заплановано на цей день (можна замість плану на день, назву дня англійською).
+
+    let week =  +prompt('Enter day from 1 to 7');
+
+        switch (week) {
+            case 1:
+                alert('Monday')
+                break;
+            case 2:
+                alert('Tuesday')
+                break;
+            case 3:
+                alert('Wednesday')
+                break;
+            case 4:
+                alert('Thursday')
+                break;
+            case 5:
+                alert('Friday')
+                break;
+            case 6:
+                alert('Saturday')
+                break;
+            case 7:
+                alert('Sunday')
+                break;
+            default:
+                alert('Щось не те клацнув');
+
+        }
+
+console.log('_______________task2_5_______________')
+
+// - Користувач вводить або має два числа.
+//    Потрібно знайти та вивести максимальне число з тих двох .
+//    Також потрібно врахувати коли введені рівні числа.
+
+    let numFirst =  +prompt('Your first number');
+    let numSecond =  +prompt('Your second number');
+
+        if (numFirst > numSecond) {
+            alert(numFirst + ' ' + 'Більше')
+        }
+        else if (numFirst < numSecond){
+            alert(numFirst+ ' ' + 'Більше')
+        }
+        else if (numFirst === numSecond){
+            alert('Введені числа рівні')
+        }
+        else {
+            alert('Щось не те клацнув');
+        }
+
+console.log('_______________task2_6_______________')
+
+// - є змінна х, яка може прийняти будь-яке значення (стрінг, число, undefined, null  і тд включно). Напишіть код який,
+//     за допомоги  оператора || буде присвоювати змінній х значення "default"  якщо значення змінної х являється falsy
+//     (хибноподібні, тобто приводиться до false)
+
+
+
+
+
+
+
+
+console.log('_______________task2_7_______________')
+
+// - з файлу arrays.js (лежить000 в папці 2023 plan ) взяти масив coursesAndDurationArray. За допомоги іф перевірити кожен його елемент на тривалість навчання. У випадку якщо тривалість довша за 5 місяців вивести в консоль "Супер".
