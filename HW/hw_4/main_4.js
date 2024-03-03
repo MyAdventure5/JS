@@ -206,7 +206,8 @@ console.log('_______________task_11_______________')
 let sum = [
     12,
     20,
-    33
+    33,
+    15
 ]
 function sumNum(arr){
     let firstSum = 0
