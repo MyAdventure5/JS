@@ -174,19 +174,19 @@ function arrObjFun(array){
 arrObjFun(arrObj)
 
 
-document.write('_______________task_10_______________')
+console.log('_______________task_10_______________')
 
 // - створити функцію яка повертає найменьше число з масиву
 
 let arrayNum = [
     12,
     46,
-    5,
+    51,
     43,
-    8,
+    11,
     876,
     53,
-    15
+    22
 ]
 function lowNum(lowRes){
     let result = lowRes[0];// Початково важаємо за найменше значення перший елемент масиву
@@ -196,5 +196,25 @@ function lowNum(lowRes){
     }
     return result;
 }
-let result = lowNum(arrayNum)
-console.log(result)
+let res = lowNum(arrayNum)
+console.log(res)
+
+console.log('_______________task_11_______________')
+
+// - створити функцію sum(arr)яка приймає масив чисел, сумує значення елементів масиву та повертає його. Приклад sum([1,2,10]) //->13
+
+let sum = [
+    12,
+    20,
+    33
+]
+function sumNum(arr){
+    let firstSum = 0
+    for (let i = 0; i < arr.length; i++){
+        let numSum = firstSum + arr[i];
+        firstSum = numSum;
+    }
+    return  firstSum
+}
+let resul = sumNum(sum)
+console.log(resul)
