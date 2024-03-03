@@ -123,14 +123,14 @@ let users = [
 ];
 console.log('_______________task_6_1_______________')
 for (const user of users) {
-    if (user.status == true){
+    if (user.status === true){
         console.log(user)
     }
 
 }
 console.log('_______________task_6_2_______________')
 for (const user of users) {
-    if (user.status == false){
+    if (user.status === false){
         console.log(user)
     }
 }
