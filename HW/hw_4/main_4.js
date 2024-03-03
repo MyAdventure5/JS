@@ -189,8 +189,12 @@ let arrayNum = [
     15
 ]
 function lowNum(lowRes){
-    for (const result of lowRes) {
-        if ()
-
+    let result = lowRes[0];// Початково важаємо за найменше значення перший елемент масиву
+    for (let i =1; i < lowRes.length; i++) {
+        if (lowRes[i]< result) // Перевіряємо починаючи з другого так як перший елемент в нас визначений як найменший,
+            result = lowRes[i];
     }
+    return result;
 }
+let result = lowNum(arrayNum)
+console.log(result)
