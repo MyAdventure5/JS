@@ -212,10 +212,56 @@ let sum = [
 function sumNum(arr){
     let firstSum = 0
     for (let i = 0; i < arr.length; i++){
-        let numSum = firstSum + arr[i];
-        firstSum = numSum;
+        firstSum = firstSum + arr[i];
+
     }
     return  firstSum
 }
 let resul = sumNum(sum)
 console.log(resul)
+
+
+console.log('_______________task_12_______________')
+
+// - створити функцію swap(arr,index1,index2). Функція міняє місцями заняення у відаовідних індексах
+// Приклад  swap([11,22,33,44],0,1) //=> [22,11,33,44]
+
+let numArr=[
+    {name:'Coco', age: 3, weight:8},
+    {name:'Lolo', age: 2, weight:2},
+    {name:'Popo', age: 4, weight:5},
+    {name:'Dodo', age: 8, weight:6}
+]
+function swap(arr,index1,index2){
+    let arrSwap = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = arrSwap;
+    return arr
+}
+
+ swap(numArr, 2,0)
+console.log(numArr)
+
+console.log('_______________task_13_______________')
+
+// - Написати функцію обміну валюти exchange(sumUAH,currencyValues,exchangeCurrency)
+// Приклад exchange(10000,[{currency:'USD',value:40},{currency:'EUR',value:42}],'USD') // => 250'
+
+let currVal =[
+    {currency:'USD',value:40},
+    {currency:'EUR',value:42}
+]
+
+function exchange(sumUAH, currencyValues, exchangeCurrency) {
+    let exchRes = 0;
+    for (let values of currencyValues) {
+        if (exchangeCurrency === values.currency){
+            exchRes = sumUAH/values.value;
+        }
+
+    }
+    return exchRes;
+
+}
+let resultich = exchange(10000,currVal,'USD')
+console.log(resultich)
