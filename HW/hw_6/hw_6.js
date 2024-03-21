@@ -164,9 +164,11 @@ cardSuits.forEach(suit => {
     })
 })
 console.log(deck)
+
 // - знайти піковий туз
 let spadeAce = deck.filter(value => value.value === 'ace' && value.cardSuits === 'spade')
 console.log(spadeAce)
+
 // - всі шістки
 let findSix = deck.filter(value => value.value === `6`);
 console.log(findSix);
@@ -174,12 +176,14 @@ console.log(findSix);
 // - всі червоні карти
 let findReds = deck.filter(value => value.color === `red`)
 console.log(findReds)
+
 // - всі буби
 let findDiamonds = deck.filter(value => value.cardSuits === `diamond`)
 console.log(findDiamonds)
+
 // - всі трефи від 9 та більше
-let findClubs9orHigher = deck.filter(value => value.cardSuits === `clubs`).filter(value => value.value != `6` && value.value!= `7` && value.value != `8`)
-console.log(findClubs9orHigher)
+let findClubs9orHigher = deck.filter(card => card.cardSuits === 'clubs' && value.indexOf(card.value) >= value.indexOf('9')); // Виправлено імену змінної та використання правильної умови
+console.log(findClubs9orHigher);
 
 
 
