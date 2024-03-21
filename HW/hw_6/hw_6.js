@@ -164,17 +164,21 @@ cardSuits.forEach(suit => {
     })
 })
 console.log(deck)
-
-let findSix = deck.filter(value => value.title === `6`);
+// - знайти піковий туз
+let spadeAce = deck.filter(value => value.value === 'ace' && value.cardSuits === 'spade')
+console.log(spadeAce)
+// - всі шістки
+let findSix = deck.filter(value => value.value === `6`);
 console.log(findSix);
 
+// - всі червоні карти
 let findReds = deck.filter(value => value.color === `red`)
 console.log(findReds)
-
-let findDiamonds = deck.filter(value => value.suit === `diamonds`)
+// - всі буби
+let findDiamonds = deck.filter(value => value.cardSuits === `diamond`)
 console.log(findDiamonds)
-
-let findClubs9orHigher = deck.filter(value => value.suit === `clubs`).filter(value => value.title != `6` && value.title!= `7` && value.title != `8`)//АБО .filter(value => value.title != `7`).filter(value => value.title != `8`)
+// - всі трефи від 9 та більше
+let findClubs9orHigher = deck.filter(value => value.cardSuits === `clubs`).filter(value => value.value != `6` && value.value!= `7` && value.value != `8`)
 console.log(findClubs9orHigher)
 
 
@@ -188,10 +192,110 @@ console.log('________________task-9_________________')
 //     clubs:[]
 // }
 
+let reduce = deck.reduce(
+        (values, deckArr) => {
+            if (deckArr.cardSuits === 'spade'){
+                values[0].push(deckArr);
+            }
+            else if (deckArr.cardSuits === 'diamond'){
+                values[1].push(deckArr);
+            }
+            else if (deckArr.cardSuits === 'heart'){
+                values[2].push(deckArr);
+            }
+            else if (deckArr.cardSuits === 'clubs'){
+                values[3].push(deckArr);
+            }
+            return values;
+},[[],[],[],[]]
+    );
+let deckSpade = reduce[0];
+let deckDiamond = reduce[1];
+let deckHeart = reduce[2];
+let deckClubs = reduce[3];
+console.log(deckSpade);
+console.log(deckDiamond);
+console.log(deckHeart);
+console.log(deckClubs);
+
 
 
 console.log('________________task-10_________________')
 //     взяти з arrays.js (який лежить в папці 2023 plan) масив coursesArray
 // --написати пошук всіх об'єктів, в який в modules є sass
 // --написати пошук всіх об'єктів, в який в modules є docker
+
+let coursesArray = [
+    {
+        title: 'JavaScript Complex',
+        monthDuration: 5,
+        hourDuration: 909,
+        modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'react', 'angular', 'aws', 'docker', 'git', 'node.js']
+    },
+    {
+        title: 'Java Complex',
+        monthDuration: 6,
+        hourDuration: 909,
+        modules: ['html',
+            'css',
+            'js',
+            'mysql',
+            'mongodb',
+            'angular',
+            'aws',
+            'docker',
+            'git',
+            'java core',
+            'java advanced']
+    },
+    {
+        title: 'Python Complex',
+        monthDuration: 6,
+        hourDuration: 909,
+        modules: ['html',
+            'css',
+            'js',
+            'mysql',
+            'mongodb',
+            'angular',
+            'aws',
+            'docker',
+            'python core',
+            'python advanced']
+    },
+    {
+        title: 'QA Complex',
+        monthDuration: 4,
+        hourDuration: 909,
+        modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'git', 'QA/QC']
+    },
+    {
+        title: 'FullStack',
+        monthDuration: 7,
+        hourDuration: 909,
+        modules: ['html',
+            'css',
+            'js',
+            'mysql',
+            'mongodb',
+            'react',
+            'angular',
+            'aws',
+            'docker',
+            'git',
+            'node.js',
+            'python',
+            'java']
+    },
+    {
+        title: 'Frontend',
+        monthDuration: 4,
+        hourDuration: 909,
+        modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'react', 'angular', 'aws', 'docker', 'git', 'sass']
+    }
+];
+let filteringSass = coursesArray.filter(values => (values.modules.includes('sass')))
+console.log(filteringSass)
+let filteringDocker = coursesArray.filter(values => (values.modules.includes('docker')))
+console.log(filteringDocker)
 
