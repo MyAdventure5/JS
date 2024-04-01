@@ -1,6 +1,6 @@
 function fetchPostDetails() {
-    let urlParams = new URLSearchParams(window.location.search);
-    let postId = urlParams.get('postId');
+    let urlParametr = new URLSearchParams(window.location.search);
+    let postId = urlParametr.get('postId');
 
     fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
         .then(response => response.json())
@@ -11,7 +11,6 @@ function fetchPostDetails() {
                         <p>${post.body}</p>
                     `;
         })
-        .catch(error => console.error('Error fetching post details:', error));
 }
 
 function fetchPostComments() {
@@ -33,7 +32,6 @@ function fetchPostComments() {
                 commentsContainer.appendChild(commentElement);
             });
         })
-        .catch(error => console.error('Error fetching post comments:', error));
 }
 
 fetchPostDetails();

@@ -18,7 +18,6 @@ function fetchUserDetails() {
                         <p><b>Company:</b> ${user.company.name}</p>
                     `;
         })
-        .catch(error => console.error('Error fetching user details:', error));
 }
 
 
@@ -42,7 +41,7 @@ function fetchUserPosts() {
                 postTitlesElement.appendChild(postBlock);
             });
         })
-        .catch(error => console.error('Error fetching user posts:', error));
+
 }
 
 document.getElementById('postButton').addEventListener('click', fetchUserPosts);

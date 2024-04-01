@@ -9,15 +9,15 @@ function fetchUsers() {
                 userContainer.innerHTML = `
                             <p>ID: ${user.id}</p>
                             <p>Name: ${user.name}</p>
-                            <button onclick="redirectToUserDetails(${user.id})">Details</button>
+                            <button onclick="goToUserDetails(${user.id})">Details</button>
                         `;
                 userListElement.appendChild(userContainer);
             });
         })
-        .catch(error => console.error('Error fetching users:', error));
+
 }
 
-function redirectToUserDetails(userId) {
+function goToUserDetails(userId) {
     window.location.href = `user-details.html?id=${userId}`;
 }
 
