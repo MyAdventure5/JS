@@ -18,8 +18,21 @@
             display: block;
         }
 
+        .post-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+
+        .post-block {
+            background-color: #e0e0e0;
+            padding: 10px;
+        }
+
         .post-title {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         .post-link {
@@ -32,17 +45,22 @@
 <div id="userDetails" class="user-details"></div>
 
 <button id="postButton" class="user-button">Post of Current User</button>
-<div id="postTitles"></div>
+<div id="postTitles" class="post-container"></div>
 
 <script>
+    // Функція отримання даних про користувача
     function fetchUserDetails() {
+        // Отримання параметра userId з URL
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('id');
 
+        // Запит на сервер для отримання даних про користувача за userId
         fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
             .then(response => response.json())
             .then(user => {
+                // Отримання елементу userDetails
                 const userDetailsElement = document.getElementById('userDetails');
+                // Заповнення даними про користувача
                 userDetailsElement.innerHTML = `
                         <p>ID: ${user.id}</p>
                         <p>Name: ${user.name}</p>
@@ -58,33 +76,41 @@
             .catch(error => console.error('Error fetching user details:', error));
     }
 
+    // Функція отримання постів користувача та їх відображення
     function fetchUserPosts() {
+        // Отримання параметра userId з URL
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('id');
 
+        // Запит на сервер для отримання постів користувача за userId
         fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
             .then(response => response.json())
             .then(posts => {
+                // Отримання елементу postTitles
                 const postTitlesElement = document.getElementById('postTitles');
+                // Очищення вмісту блоку postTitles перед додаванням нових постів
                 postTitlesElement.innerHTML = '';
+                // Перебір постів
                 posts.forEach(post => {
-                    const postTitleElement = document.createElement('p');
-                    postTitleElement.classList.add('post-title');
-                    postTitleElement.textContent = post.title;
-                    postTitlesElement.appendChild(postTitleElement);
-
-                    const postLinkElement = document.createElement('a');
-                    postLinkElement.classList.add('post-link');
-                    postLinkElement.textContent = 'View Post Details';
-                    postLinkElement.href = `post-details.html?postId=${post.id}`;
-                    postTitlesElement.appendChild(postLinkElement);
+                    // Створення блоку для кожного посту
+                    const postBlock = document.createElement('div');
+                    postBlock.classList.add('post-block');
+                    // Вміст блоку - заголовок посту та посилання на сторінку з деталями посту
+                    postBlock.innerHTML = `
+                            <p class="post-title">${post.title}</p>
+                            <a class="post-link" href="post-details.html?postId=${post.id}">View Post Details</a>
+                        `;
+                    // Додавання блоку з постом до контейнера postTitles
+                    postTitlesElement.appendChild(postBlock);
                 });
             })
             .catch(error => console.error('Error fetching user posts:', error));
     }
 
+    // Підписка на подію click кнопки "Post of Current User" і виклик функції fetchUserPosts
     document.getElementById('postButton').addEventListener('click', fetchUserPosts);
 
+    // Виклик функції fetchUserDetails для відображення даних про користувача
     fetchUserDetails();
 </script>
 </body>
