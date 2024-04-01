@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <style>
+        .post-info {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .comments-block {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .comment {
+            width: 23%;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+<div id="postDetails" class="post-info"></div>
+<div id="comments" class="comments-block"></div>
+
+<script>
+    // Отримання id поста з URL-параметрів
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
+
+    // Функція для виведення коментарів поточного поста
+    function displayPostComments() {
+        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+            .then(response => response.json())
+            .then(comments => {
+                const commentsElement = document.getElementById('comments');
+                // Виведення всіх коментарів поточного поста
+                commentsElement.innerHTML = '<h2>Comments:</h2>';
+                comments.forEach(comment => {
+                    const commentDiv = document.createElement('div');
+                    commentDiv.innerHTML = `
+                            <p><strong>Name:</strong> ${comment.name}</p>
+                            <p><strong>Email:</strong> ${comment.email}</p>
+                            <p><strong>Body:</strong> ${comment.body}</p>
+                            <hr>
+                        `;
+                    commentsElement.appendChild(commentDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching comments:', error);
+            });
+    }
+
+    // Отримання детальної інформації про пост з API
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+        .then(response => response.json())
+        .then(post => {
+            const postDetailsElement = document.getElementById('postDetails');
+            // Виведення всієї інформації про пост
+            postDetailsElement.innerHTML = `<pre>${JSON.stringify(post, null, 2)}</pre>`;
+            // Виклик функції для виведення коментарів після відображення інформації про пост
+            displayPostComments();
+        })
+        .catch(error => {
+            console.error('Error fetching post details:', error);
+        });
+</script>
+</body>
+</html>
