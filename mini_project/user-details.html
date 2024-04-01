@@ -17,20 +17,32 @@
             margin: 20px auto;
             display: block;
         }
+
+        .post-title {
+            margin-bottom: 10px;
+        }
+
+        .post-link {
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 <div id="userDetails" class="user-details"></div>
 
+<button id="postButton" class="user-button">Post of Current User</button>
+<div id="postTitles"></div>
+
 <script>
     function fetchUserDetails() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let userId = urlParams.get('id');
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
 
         fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
             .then(response => response.json())
             .then(user => {
-                let userDetailsElement = document.getElementById('userDetails');
+                const userDetailsElement = document.getElementById('userDetails');
                 userDetailsElement.innerHTML = `
                         <p>ID: ${user.id}</p>
                         <p>Name: ${user.name}</p>
@@ -42,25 +54,36 @@
                         <p>Website: ${user.website}</p>
                         <p>Company: ${user.company.name}</p>
                     `;
-
-                let backButton = document.createElement('button');
-                backButton.textContent = 'Back';
-                backButton.classList.add('user-button');
-                backButton.addEventListener('click', () => {
-                    window.history.back();
-                });
-                userDetailsElement.appendChild(backButton);
-
-                let postsButton = document.createElement('button');
-                postsButton.textContent = 'Post of Current User';
-                postsButton.classList.add('user-button');
-                postsButton.addEventListener('click', () => {
-                    window.location.href = `post-details.html?userId=${user.id}`;
-                });
-                userDetailsElement.appendChild(postsButton);
             })
             .catch(error => console.error('Error fetching user details:', error));
     }
+
+    function fetchUserPosts() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+            .then(response => response.json())
+            .then(posts => {
+                const postTitlesElement = document.getElementById('postTitles');
+                postTitlesElement.innerHTML = '';
+                posts.forEach(post => {
+                    const postTitleElement = document.createElement('p');
+                    postTitleElement.classList.add('post-title');
+                    postTitleElement.textContent = post.title;
+                    postTitlesElement.appendChild(postTitleElement);
+
+                    const postLinkElement = document.createElement('a');
+                    postLinkElement.classList.add('post-link');
+                    postLinkElement.textContent = 'View Post Details';
+                    postLinkElement.href = `post-details.html?postId=${post.id}`;
+                    postTitlesElement.appendChild(postLinkElement);
+                });
+            })
+            .catch(error => console.error('Error fetching user posts:', error));
+    }
+
+    document.getElementById('postButton').addEventListener('click', fetchUserPosts);
 
     fetchUserDetails();
 </script>
