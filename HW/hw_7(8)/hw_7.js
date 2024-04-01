@@ -217,7 +217,7 @@ class Prince {
     }
 }
 
-// Створення масиву з 10 попелюшок
+
 let popelufce = [
     new Popelufka('Polya1', 20, 35),
     new Popelufka('Polya2', 21, 36),
@@ -232,7 +232,7 @@ let popelufce = [
 ];
 
 
-let prince = new Prince('Prince Andrey', 22, 37); // Нехай принц знайшов туфельку розміром 37
+let prince = new Prince('Prince Andrey', 22, 37);
 
 
 let foundPopelufka = popelufce.find(Popelufka => Popelufka.footSize === prince.foundShoe);
