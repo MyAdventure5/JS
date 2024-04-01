@@ -1,134 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Details</title>
-    <style>
-        body{
-            font-family: Alef;
-            background-color: #D5F0D9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .user-details {
-            width: 90%;
-            margin: 10px auto;
-            padding: 20px;
-            background-color: #92D1AE;
-            color: #D5F0D9;
-            float: left;
-            border-radius: 6px;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="Style/user-details-style.css">
+        <title>User Details</title>
 
-        .user-button {
-            width: 90%;
-            margin: 10px auto;
-            display: block;
-            background-color: #51B687;
-            color: #296248;
-            border: 2px solid #296248;
-            border-radius: 5px;
-        }
+    </head>
 
-        .post-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-gap: 20px;
-            margin-top: 20px;
-        }
+    <body>
+        <div id="userDetails" class="user-details"></div>
+        <button id="postButton" class="user-button">Post of Current User</button>
+        <div id="postTitles" class="post-container"></div>
 
-        .post-block {
-            background-color: #92D1AE;
-            color: #D5F0D9;
-            float: left;
-            border-radius: 6px;
-            padding: 10px;
-        }
+        <script src="JS/user-details.js"> </script>
+    </body>
 
-        .post-title {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .post-link {
-            text-align: center;
-            display: block;
-            margin-top: 10px;
-            border: 2px solid #296248;
-            border-radius: 5px;
-            background-color: #51B687;
-            color: #296248;
-        }
-    </style>
-</head>
-<body>
-<div id="userDetails" class="user-details"></div>
-
-<button id="postButton" class="user-button">Post of Current User</button>
-<div id="postTitles" class="post-container"></div>
-
-<script>
-    // Функція отримання даних про користувача
-    function fetchUserDetails() {
-        // Отримання параметра userId з URL
-        let urlParams = new URLSearchParams(window.location.search);
-        let userId = urlParams.get('id');
-
-        fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-            .then(response => response.json())
-            .then(user => {
-                let userDetailsElement = document.getElementById('userDetails');
-                userDetailsElement.innerHTML = `
-                        <p><b>ID:</b> ${user.id}</p>
-                        <p><b>Name:</b> ${user.name}</p>
-                        <p><b>Username:</b> ${user.username}</p>
-                        <p><b>Email:</b> ${user.email}</p>
-                        <p><b>Address:</b> ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}</p>
-                        <p><b>Geo:</b> Lat ${user.address.geo.lat}, Lng ${user.address.geo.lng}</p>
-                        <p><b>Phone:</b> ${user.phone}</p>
-                        <p><b>Website:</b> ${user.website}</p>
-                        <p><b>Company:</b> ${user.company.name}</p>
-                    `;
-            })
-            .catch(error => console.error('Error fetching user details:', error));
-    }
-
-
-    function fetchUserPosts() {
-
-        let urlParams = new URLSearchParams(window.location.search);
-        let userId = urlParams.get('id');
-
-
-        fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
-            .then(response => response.json())
-            .then(posts => {
-
-                let postTitlesElement = document.getElementById('postTitles');
-
-                postTitlesElement.innerHTML = '';
-
-                posts.forEach(post => {
-
-                    let postBlock = document.createElement('div');
-                    postBlock.classList.add('post-block');
-
-                    postBlock.innerHTML = `
-                            <p class="post-title">${post.title}</p>
-                            <a class="post-link" href="post-details.html?postId=${post.id}">View Post Details</a>
-                        `;
-                    postTitlesElement.appendChild(postBlock);
-                });
-            })
-            .catch(error => console.error('Error fetching user posts:', error));
-    }
-
-    document.getElementById('postButton').addEventListener('click', fetchUserPosts);
-
-    fetchUserDetails();
-</script>
-</body>
 </html>

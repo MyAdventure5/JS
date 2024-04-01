@@ -1,80 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Details</title>
-    <style>
-        .post-details {
-            width: 90%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="Style/post-list-style.css">
+        <title>Post Details</title>
 
-        .comments-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 20px;
-            margin-top: 20px;
-        }
+    </head>
+    <body>
 
-        .comment {
-            background-color: #e0e0e0;
-            padding: 10px;
-        }
+        <div id="postDetails" class="post-details"></div>
 
-        .comment-name {
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-<div id="postDetails" class="post-details"></div>
+        <div id="comments" class="comments-container"></div>
 
-<div id="comments" class="comments-container"></div>
+        <script src="JS/post-details.js"></script>
 
-<script>
-    function fetchPostDetails() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let postId = urlParams.get('postId');
-
-        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-            .then(response => response.json())
-            .then(post => {
-                let postDetailsElement = document.getElementById('postDetails');
-                postDetailsElement.innerHTML = `
-                        <h2>${post.title}</h2>
-                        <p>${post.body}</p>
-                    `;
-            })
-            .catch(error => console.error('Error fetching post details:', error));
-    }
-
-    function fetchPostComments() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let postId = urlParams.get('postId');
-
-        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-            .then(response => response.json())
-            .then(comments => {
-                let commentsContainer = document.getElementById('comments');
-                commentsContainer.innerHTML = '';
-                comments.forEach(comment => {
-                    let commentElement = document.createElement('div');
-                    commentElement.classList.add('comment');
-                    commentElement.innerHTML = `
-                            <p class="comment-name">${comment.name}</p>
-                            <p>${comment.body}</p>
-                        `;
-                    commentsContainer.appendChild(commentElement);
-                });
-            })
-            .catch(error => console.error('Error fetching post comments:', error));
-    }
-
-    fetchPostDetails();
-    fetchPostComments();
-</script>
-</body>
+    </body>
 </html>
