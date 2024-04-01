@@ -15,6 +15,9 @@ clonedBlock.querySelector('p').textContent = "2 блок";
 document.body.appendChild(clonedBlock);
 
 
+
+
+
 console.log('_______________task-2_______________')
 // - Є масив:
 //     ['Main','Products','About us','Contacts']
@@ -70,6 +73,7 @@ coursesAndDurationArray.forEach(course => {
 
 
 
+
 console.log('_______________task-4_______________')
 //     - Є масив
 // let coursesAndDurationArray = [
@@ -104,6 +108,10 @@ coursesAndDurationArray.forEach(course => {
 
     coursesCreatedDiv.appendChild(itemDiv);
 });
+
+
+
+
 
 
 console.log('_______________task-5_______________')
@@ -179,7 +187,11 @@ simpsons.forEach(member =>{
     simpsonsDiv.appendChild(members);
 })
 
-console.log('_______________task-5_______________')
+
+
+
+
+console.log('_______________task-6_______________')
 
 
 //     Цикл в циклі
